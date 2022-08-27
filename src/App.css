@@ -1,0 +1,26 @@
+.container-grid {
+  display: grid; /* grid containers */
+  grid-template-columns: 60px repeat(7, auto); /* four columns */
+  grid-template-rows: repeat(19, 40px); /* four rows */
+  grid-auto-flow: column; /* in column direction */
+}
+
+.column {
+  display: contents;
+  text-align: center; /* the child elements would be grid items */
+}
+
+.cell {
+  border: 1px solid #d3d3d3;
+}
+
+.cell_header_col {
+  padding-right: 5px;
+  color: #a0a0a0;
+}
+
+.cell_header_header {
+  color: #a0a0a0;
+  font-weight: bold;
+  vertical-align: text-bottom;
+}
