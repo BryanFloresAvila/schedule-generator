@@ -1,10 +1,12 @@
 import './App.css';
-
+import Scheduler from './components/Scheduler';
+import Header from './components/Header';
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <>
+      <Header></Header>
+      <Scheduler></Scheduler>
+    </>
   );
 }
 
