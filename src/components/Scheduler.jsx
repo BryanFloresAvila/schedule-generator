@@ -33,46 +33,48 @@ const Scheduler = () => {
           return <Cell key={index} text={hour} />;
         })}
       </div>
-      <div className="flex ">
+      <div className="flex">
         {DAYS.map((day, index) => {
-          return <Cell key={index} text={day} />;
+          return (
+            <div className="flex-initial w-32">
+              <Cell key={index} text={day} />
+            </div>
+          );
         })}
       </div>
       {/* ----- */}
-      <div>
+      <div class="relative">
         {/* All cells */}
-        <div className="relative">
-          <div className="absolute flex">
-            <div className="flex-initial w-32">
-              {HOURS.map(() => {
-                return <Cell></Cell>;
-              })}
-            </div>
-            <div className="flex-initial w-32">
-              {HOURS.map(() => {
-                return <Cell></Cell>;
-              })}
-            </div>
-            <div className="flex-initial w-32">
-              {HOURS.map(() => {
-                return <Cell></Cell>;
-              })}
-            </div>
-            <div className="flex-initial w-32">
-              {HOURS.map(() => {
-                return <Cell></Cell>;
-              })}
-            </div>
-            <div className="flex-initial w-32">
-              {HOURS.map(() => {
-                return <Cell></Cell>;
-              })}
-            </div>
-            <div className="flex-initial w-32">
-              {HOURS.map(() => {
-                return <Cell></Cell>;
-              })}
-            </div>
+        <div className="flex absolute">
+          <div className="flex-initial w-32">
+            {HOURS.map(() => {
+              return <Cell></Cell>;
+            })}
+          </div>
+          <div className="flex-initial w-32">
+            {HOURS.map(() => {
+              return <Cell></Cell>;
+            })}
+          </div>
+          <div className="flex-initial w-32">
+            {HOURS.map(() => {
+              return <Cell></Cell>;
+            })}
+          </div>
+          <div className="flex-initial w-32">
+            {HOURS.map(() => {
+              return <Cell></Cell>;
+            })}
+          </div>
+          <div className="flex-initial w-32">
+            {HOURS.map(() => {
+              return <Cell></Cell>;
+            })}
+          </div>
+          <div className="flex-initial w-32">
+            {HOURS.map(() => {
+              return <Cell></Cell>;
+            })}
           </div>
         </div>
         {/* All slots */}
