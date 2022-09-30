@@ -1,17 +1,69 @@
-.container-grid {
-  display: grid; /* grid containers */
-  grid-template-columns: 60px repeat(7, auto); /* four columns */
-  grid-template-rows: repeat(19, 40px); /* four rows */
-  grid-auto-flow: column; /* in column direction */
+@import './index.css';
+
+.scheduler-container {}
+
+.scheduler-table {
+  position: relative;
+  display: grid;
+  /* grid containers */
+  position: relative;
+  grid-template-areas:
+    "day-labels day-labels"
+    "timeline layer-container";
+  grid-template-rows: var(--header-height) 1fr;
+  grid-template-columns: var(--timeline-width) 1fr;
+}
+
+.layer-container {
+  grid-area: layer-container;
+  position: relative;
+}
+
+.timeline {
+  grid-area: timeline;
+
+}
+
+.hour {
+  position: relative;
+  border-bottom: 1px solid #bbb;
+}
+
+.hour-label{
+  
+}
+
+.day-labels {
+  grid-area: day-labels;
+}
+
+.labels-container {
+  display: flex;
+
+}
+
+.day-column {
+  width: 150px;
+}
+
+.cells-grid {
+  height: 100%;
 }
 
 .column {
   display: contents;
-  text-align: center; /* the child elements would be grid items */
+  text-align: center;
+  /* the child elements would be grid items */
 }
 
 .cell {
-  border: 1px solid #d3d3d3;
+  border-left: 1px solid #bbb;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 }
 
 .cell_header_col {
@@ -23,4 +75,14 @@
   color: #a0a0a0;
   font-weight: bold;
   vertical-align: text-bottom;
+}
+
+.sticky-left {
+  position: sticky;
+  left: 0;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
 }
