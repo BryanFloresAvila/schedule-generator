@@ -25,7 +25,6 @@ const HOURS = [
   '12 AM',
 ];
 
-
 function App() {
   const [[totalHeight, totalWidth], setDimensions] = useState([0, 0]);
   const cellHeight = 100;
@@ -37,12 +36,12 @@ function App() {
       return null;
     }
     return createGrid({
-      totalHeight,
-      totalWidth,
-      numHorizontalCells,
-      numVerticalCells
+      totalHeight: numVerticalCells * cellHeight,
+      totalWidth: numHorizontalCells * cellWidth,
+      numHorizontalCells: numHorizontalCells,
+      numVerticalCells: numVerticalCells,
     });
-  }
+  };
   const baseRect = grid()?.getRectFromCell({
     startX: 0,
     startY: 0,
@@ -50,59 +49,52 @@ function App() {
     endY: 0,
     spanX: 1,
     spanY: 1,
-  })
+  });
 
   return (
     <div className="scheduler-container">
       <div className="scheduler-body">
-        <div className='scheduler-table'>
+        <div className="scheduler-table">
           <div className="layer-container">
-            <div className='cells-grid'>
-              {
-                DAYS.map((day, dayIndex) => {
-                  return (
-                    <div className="day-column" key={day}>
-                      {
-                        HOURS.map((hour, indexHour) => {
-                          return (
-                            <Cell key={hour}
-                              rect={grid()?.getRectFromCell({
-                                startX: dayIndex,
-                                startY: indexHour,
-                                endX: dayIndex + 1,
-                                endY: indexHour + 1,
-                                spanX: 1,
-                                spanY: 1
-                              })}>
-                            </Cell>
-                          )
-                        })
-                      }
-                    </div>
-                  )
-                })
-              }
+            <div className="cells-grid">
+              {DAYS.map((day, dayIndex) => {
+                return (
+                  <div className="day-column" key={day}>
+                    {HOURS.map((hour, indexHour) => {
+                      return (
+                        <Cell
+                          key={hour}
+                          rect={grid()?.getRectFromCell({
+                            startX: dayIndex,
+                            startY: indexHour,
+                            endX: dayIndex + 1,
+                            endY: indexHour + 1,
+                            spanX: 1,
+                            spanY: 1,
+                          })}></Cell>
+                      );
+                    })}
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="timeline">
             <div>
               {HOURS.map((hour) => (
-                <div
-                  key={hour}
-                  className="hour"
-                  style={{ height: '50px' }}>
-                  <div className='hour-label'>
-                    {hour}
-                  </div>
+                <div key={hour} className="hour" style={{ height: '100px' }}>
+                  <div className="hour-label">{hour}</div>
                 </div>
               ))}
             </div>
           </div>
           <div className="day-labels">
             <div className="labels-container">
-              <div style={{ width: '50px' }}></div>
+              <div style={{ width: '150px' }}></div>
               {DAYS.map((day) => (
-                <div key={day} className='day-column'>{day}</div>
+                <div key={day} className="day-column">
+                  {day}
+                </div>
               ))}
             </div>
           </div>
