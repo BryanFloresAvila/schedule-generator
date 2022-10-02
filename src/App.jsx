@@ -2,7 +2,8 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cell } from './components/cells/Cell';
 import { createGrid } from './utils/creatGrid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import scrollIntoView from 'scroll-into-view-if-needed';
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const HOURS = [
   '7 AM',
@@ -51,8 +52,16 @@ function App() {
     spanY: 1,
   });
 
+  useEffect(() => {
+    scrollIntoView(document.getElementById('schedule'), {
+      scrollMode: 'if-needed',
+      block: 'nearest',
+      inline: 'nearest',
+    });
+  }, []);
+
   return (
-    <div className="scheduler-container">
+    <div className="scheduler-container" id="schedule">
       <div className="scheduler-body">
         <div className="scheduler-table">
           <div className="layer-container">
