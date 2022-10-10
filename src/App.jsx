@@ -2,8 +2,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cell } from './components/cells/Cell';
 import { createGrid } from './utils/creatGrid';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
+import useComponentSize from '@rehooks/component-size';
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const HOURS = [
   '7 AM',
@@ -28,10 +29,13 @@ const HOURS = [
 
 function App() {
   const [[totalHeight, totalWidth], setDimensions] = useState([0, 0]);
-  const cellHeight = 100;
+  const cellHeight = 50;
   const cellWidth = 150;
   const numHorizontalCells = 18;
   const numVerticalCells = 7;
+  const root = useRef(null);
+  const cellsGrid = useRef(null);
+  const size = useComponentSize(parentRef);
   const grid = () => {
     if (totalHeight === null || totalWidth === null) {
       return null;
@@ -51,21 +55,17 @@ function App() {
     spanX: 1,
     spanY: 1,
   });
-
-  useEffect(() => {
-    scrollIntoView(document.getElementById('schedule'), {
-      scrollMode: 'if-needed',
-      block: 'nearest',
-      inline: 'nearest',
-    });
-  }, []);
-
+  //update grid when window size changes
+  useEffect(() => {});
   return (
-    <div className="scheduler-container" id="schedule">
+    <div className="scheduler-container" /*  style={{ height, width }} */>
+      <div className="scheduler-header">
+        <h1>This week scheduler header</h1>
+      </div>
       <div className="scheduler-body">
-        <div className="scheduler-table">
+        <div className="scheduler-table" ref={root}>
           <div className="layer-container">
-            <div className="cells-grid">
+            <div className="cells-grid" ref={cellsGrid}>
               {DAYS.map((day, dayIndex) => {
                 return (
                   <div className="day-column" key={day}>
@@ -91,7 +91,7 @@ function App() {
           <div className="timeline">
             <div>
               {HOURS.map((hour) => (
-                <div key={hour} className="hour" style={{ height: '100px' }}>
+                <div key={hour} className="hour" style={{ height: '50px' }}>
                   <div className="hour-label">{hour}</div>
                 </div>
               ))}

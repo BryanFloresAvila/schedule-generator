@@ -1,6 +1,5 @@
 export const Cell = ({ rect, children }) => {
   /* console.log('rect', rect); */
-  console.log(document.activeElement);
   return (
     <div
       style={{
