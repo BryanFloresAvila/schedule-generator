@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cell } from './components/cells/Cell';
 import { createGrid } from './utils/creatGrid';
 import { useState, useEffect, useRef } from 'react';
-import scrollIntoView from 'scroll-into-view-if-needed';
 import useComponentSize from '@rehooks/component-size';
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const HOURS = [
@@ -28,6 +27,7 @@ const HOURS = [
 ];
 
 function App() {
+  console.log('RENDER');
   const [[totalHeight, totalWidth], setDimensions] = useState([0, 0]);
   const cellHeight = 50;
   const cellWidth = 150;
@@ -35,7 +35,7 @@ function App() {
   const numVerticalCells = 7;
   const root = useRef(null);
   const cellsGrid = useRef(null);
-  const size = useComponentSize(parentRef);
+  const size = useComponentSize(cellsGrid);
   const grid = () => {
     if (totalHeight === null || totalWidth === null) {
       return null;
@@ -59,9 +59,7 @@ function App() {
   useEffect(() => {});
   return (
     <div className="scheduler-container" /*  style={{ height, width }} */>
-      <div className="scheduler-header">
-        <h1>This week scheduler header</h1>
-      </div>
+      <div className="scheduler-header"></div>
       <div className="scheduler-body">
         <div className="scheduler-table" ref={root}>
           <div className="layer-container">
@@ -99,9 +97,9 @@ function App() {
           </div>
           <div className="day-labels">
             <div className="labels-container">
-              <div style={{ width: '150px' }}></div>
+              <div></div>
               {DAYS.map((day) => (
-                <div key={day} className="day-column">
+                <div key={day} className="day-column" style={{ width: baseRect?.width }}>
                   {day}
                 </div>
               ))}
